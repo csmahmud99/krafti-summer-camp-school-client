@@ -4,10 +4,12 @@ import { FaEnvelope, FaFacebookSquare, FaGlobe, FaLinkedin, FaPhoneSquare, FaTwi
 
 const Footer = () => {
     return (
-        <div>
+        <>
             <footer className="footer p-10 bg-primary text-primary-content">
                 <div>
-                    <img src={logo} alt="footer-info-logo" />
+                    <Link to="/">
+                        <img src={logo} alt="footer-info-logo" />
+                    </Link>
                     <p><span className="text-xl font-bold">Krafti-Summer Camp Learning School</span><br />- Providing practical training since 2003.</p>
                 </div>
                 <div>
@@ -63,7 +65,7 @@ const Footer = () => {
                     </div>
                 </div>
             </footer>
-        </div>
+        </>
     );
 };
 
