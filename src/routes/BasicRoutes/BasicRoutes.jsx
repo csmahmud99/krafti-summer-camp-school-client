@@ -3,6 +3,8 @@ import MainLayout from "../../layouts/MainLayout/MainLayout";
 import Home from "../../pages/Home/Home/Home";
 import AllInstructors from "../../pages/AllInstructors/AllInstructors";
 import AllClasses from "../../pages/AllClasses/AllClasses";
+import LogIn from "../../pages/LogIn/LogIn/LogIn";
+import Register from "../../pages/LogIn/Register/Register";
 
 const router = createBrowserRouter([
     {
@@ -20,6 +22,14 @@ const router = createBrowserRouter([
             {
                 path: "/all-classes",
                 element: <AllClasses />
+            },
+            {
+                path: "/login",
+                element: <LogIn />
+            },
+            {
+                path: "/register",
+                element: <Register />
             }
         ]
     },
