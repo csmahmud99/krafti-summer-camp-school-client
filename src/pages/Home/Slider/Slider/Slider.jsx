@@ -12,8 +12,8 @@ const Slider = () => {
         <>
             <Carousel>
                 {/* Slider - 01 */}
-                <div>
-                    <img src={sliderImage01} />
+                <div style={{height: "700px"}}>
+                    <img src={sliderImage01} className="h-full w-auto" />
                     <p className="legend p-5">
                         <SliderContent
                             title="Unleash Your Creativity"
@@ -25,8 +25,8 @@ const Slider = () => {
                 </div>
 
                 {/* Slider - 02 */}
-                <div>
-                    <img src={sliderImage02} />
+                <div style={{height: "700px"}}>
+                    <img src={sliderImage02} className="h-full w-auto" />
                     <p className="legend p-5">
                         <SliderContent
                             title="Transform Ordinary Materials"
@@ -38,8 +38,8 @@ const Slider = () => {
                 </div>
 
                 {/* Slider - 03 */}
-                <div>
-                    <img src={sliderImage03} />
+                <div style={{height: "700px"}}>
+                    <img src={sliderImage03} className="h-full w-auto" />
                     <p className="legend p-5">
                         <SliderContent
                             title="Master Artistic Techniques"
