@@ -6,6 +6,7 @@ import { useState } from "react";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Register = () => {
+    // Handle form events
     const { register, handleSubmit, watch, formState: { errors } } = useForm({
         mode: "onTouched"
     });
@@ -14,9 +15,10 @@ const Register = () => {
     const [visiblePassword, setVisiblePassword] = useState(false);
     const [visibleConfirmPassword, setVisibleConfirmPassword] = useState(false)
 
-    //    check password event 
+    // Check password event 
     const password = watch("password")
 
+    // Handle submit 
     const onSubmit = data => {
         console.log(data);
     };

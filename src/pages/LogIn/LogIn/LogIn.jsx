@@ -4,6 +4,7 @@ import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const LogIn = () => {
+    // Handle form events
     const { register, handleSubmit, formState: { errors } } = useForm({
         mode: "onTouched"
     });
@@ -11,6 +12,7 @@ const LogIn = () => {
     // State for showing or hiding password
     const [visiblePassword, setVisiblePassword] = useState(false);
 
+    // Handle submit 
     const onSubmit = data => {
         console.log(data);
     };
