@@ -1,5 +1,5 @@
+import HomeAbout from "../HomeAbout/HomeAbout";
 import Slider from "../Slider/Slider/Slider";
-import HomeAbout from "./HomeAbout/HomeAbout";
 
 const Home = () => {
     return (
