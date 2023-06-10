@@ -20,7 +20,9 @@ const NavigationBar = () => {
                             {navOptions}
                         </ul>
                     </div>
-                    <img src={logo} alt="site-logo" />
+                    <Link to="/">
+                        <img src={logo} alt="site-logo" />
+                    </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -30,7 +32,9 @@ const NavigationBar = () => {
                 <div className=" flex navbar-end gap-3">
                     <img className="w-10 rounded-full" src="https://i.pravatar.cc/150?img=3" />
                     <button className="btn">Log Out</button>
-                    <button className="btn">Log In</button>
+                    <Link to="/login">
+                        <button className="btn">Log In</button>
+                    </Link>
                 </div>
             </div>
         </>
