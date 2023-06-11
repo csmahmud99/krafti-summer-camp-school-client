@@ -5,7 +5,6 @@ import AllInstructors from "../../pages/AllInstructors/AllInstructors";
 import AllClasses from "../../pages/AllClasses/AllClasses";
 import LogIn from "../../pages/LogIn/LogIn/LogIn";
 import Register from "../../pages/LogIn/Register/Register";
-import Secret from "../../pages/Secret/Secret";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import ErrorPage from "../../pages/ErrorPage/ErrorPage";
 import DashboardLayout from "../../layouts/DashBoardLayout/DashboardLayout";
@@ -37,10 +36,6 @@ const router = createBrowserRouter([
             {
                 path: "/register",
                 element: <Register />
-            },
-            {
-                path: "/secret-page",
-                element: <PrivateRoute><Secret /></PrivateRoute>
             }
         ]
     },

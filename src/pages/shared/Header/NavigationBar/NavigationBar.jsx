@@ -38,7 +38,6 @@ const NavigationBar = () => {
         <li><Link to="/">Home</Link></li>
         <li><Link to="/all-instructors">All Instructors</Link></li>
         <li><Link to="/all-classes">All Classes</Link></li>
-        <li><Link to="/secret-page">Secret</Link></li>
         {
             user
                 ? <Link to="/dashboard/all-users" className="btn btn-outline btn-sm bg-black text-yellow-400 ">My Dashboard</Link>
