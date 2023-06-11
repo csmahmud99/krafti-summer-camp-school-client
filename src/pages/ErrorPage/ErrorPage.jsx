@@ -8,7 +8,7 @@ const ErrorPage = () => {
   const { error, status } = useRouteError()
 
   return (
-    <section className='flex items-center p-16 bg-blue-600 text-white'>
+    <section className='flex items-center p-16 bg-primary text-white'>
       <div className='container flex flex-col items-center justify-center px-5 mx-auto my-16'>
         <div className="row w-48">
           <img className="mx-auto rounded-md" src="https://i.ibb.co/nfqdyjR/summer-camp-error.png" alt="error-image" />

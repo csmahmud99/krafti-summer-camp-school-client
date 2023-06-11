@@ -2,3 +2,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Changing the style of dashboard layout sidebar menu */
+.drawer-side a {
+    color: white;
+    background-color: transparent;
+}
+
+.drawer-side a.active {
+    color: yellow;
+}
+
