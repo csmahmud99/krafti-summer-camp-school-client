@@ -1,19 +1,33 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../../assets/logos/krafti-logo.png";
 import { useContext } from "react";
+import Swal from "sweetalert2";
 
 // Importing 'user' and 'system logout' provider from AuthContext API
 import { AuthContext } from "../../../../providers/AuthProvider/AuthProvider";
 
 const NavigationBar = () => {
+    const navigate = useNavigate();
+
     // 'user' & 'system logOut' provider from AuthContext API
     const { user, logOut } = useContext(AuthContext);
+
 
     // Handle LogOut
     const handleLogOut = () => {
         logOut()
             .then(() => {
                 console.log("LogOut Successful");
+                Swal.fire({
+                    title: 'User is successfully logged out.',
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
+                });
+                navigate("/login");
             })
             .catch(error => {
                 console.log("error logout", error.message);

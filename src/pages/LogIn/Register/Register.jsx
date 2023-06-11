@@ -7,8 +7,12 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 // Importing 'email-password' signIn provider from AuthContext API
 import { AuthContext } from "../../../providers/AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+    const navigate = useNavigate();
+
     // Handle form events
     const { register, handleSubmit, watch, formState: { errors } } = useForm({
         mode: "onTouched"
@@ -43,6 +47,16 @@ const Register = () => {
             .then(userCredential => {
                 const user = userCredential.user;
                 console.log(user);
+                Swal.fire({
+                    title: 'You have been successfully registered.',
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
+                });
+                navigate("/");
             })
             .catch(error => {
                 console.log("error register", error.message);

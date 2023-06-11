@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import LogInRedirect from "../../../components/LoginRedirect/LogInRedirect";
 import { useContext, useState } from "react";
+import Swal from "sweetalert2";
 
 // Importing "Eye" icon for showing/hiding password
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -17,6 +18,12 @@ const LogIn = () => {
     // State for showing or hiding password
     const [visiblePassword, setVisiblePassword] = useState(false);
 
+    // Handle password eye
+    const handlePasswordClick = (event) => {
+        event.preventDefault();
+        setVisiblePassword(!visiblePassword);
+    };
+
     // 'email-password' signIn provider from AuthContext API
     const { signIn } = useContext(AuthContext);
 
@@ -27,6 +34,13 @@ const LogIn = () => {
             .then(userCredential => {
                 const user = userCredential.user;
                 console.log(user);
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Your have logged in successfully.',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             })
             .catch(error => {
                 console.log("error login:", error.message);
@@ -71,8 +85,8 @@ const LogIn = () => {
                                     <div className="p-2 text-xl 1/3 absolute right-1 -mr-3">
                                         {
                                             visiblePassword
-                                                ? <button onClick={() => setVisiblePassword(!visiblePassword)} className="btn btn-primary text-white"><FaEye /></button>
-                                                : <button onClick={() => setVisiblePassword(!visiblePassword)} className="btn btn-primary text-white"><FaEyeSlash /></button>
+                                                ? <button onClick={handlePasswordClick} className="btn btn-primary text-white"><FaEye /></button>
+                                                : <button onClick={handlePasswordClick} className="btn btn-primary text-white"><FaEyeSlash /></button>
                                         }
                                     </div>
                                 </div>
