@@ -1,7 +1,25 @@
 import { Link } from "react-router-dom";
 import logo from "../../../../assets/logos/krafti-logo.png";
+import { useContext } from "react";
+
+// Importing 'user' and 'system logout' provider from AuthContext API
+import { AuthContext } from "../../../../providers/AuthProvider/AuthProvider";
 
 const NavigationBar = () => {
+    // 'user' & 'system logOut' provider from AuthContext API
+    const { user, logOut } = useContext(AuthContext);
+
+    // Handle LogOut
+    const handleLogOut = () => {
+        logOut()
+            .then(() => {
+                console.log("LogOut Successful");
+            })
+            .catch(error => {
+                console.log("error logout", error.message);
+            });
+    };
+
     const navOptions = <>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/all-instructors">All Instructors</Link></li>
@@ -30,11 +48,20 @@ const NavigationBar = () => {
                     </ul>
                 </div>
                 <div className=" flex navbar-end gap-3">
-                    <img className="w-10 rounded-full" src="https://i.pravatar.cc/150?img=3" />
-                    <button className="btn">Log Out</button>
-                    <Link to="/login">
-                        <button className="btn">Log In</button>
-                    </Link>
+
+
+                    {
+                        user
+                            ? <>
+                                <img className="w-10 rounded-full" src="https://i.pravatar.cc/150?img=3" />
+                                <button onClick={handleLogOut} className="btn">Log Out</button>
+                            </>
+                            : <>
+                                <Link to="/login">
+                                    <button className="btn">Log In</button>
+                                </Link>
+                            </>
+                    }
                 </div>
             </div>
         </>

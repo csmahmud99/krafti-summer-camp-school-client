@@ -1,9 +1,12 @@
 import { useForm } from "react-hook-form";
 import LogInRedirect from "../../../components/LoginRedirect/LogInRedirect";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 // Importing "Eye" icon for showing/hiding password
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+
+// Importing 'email-password' signIn provider from AuthContext API
+import { AuthContext } from "../../../providers/AuthProvider/AuthProvider";
 
 const Register = () => {
     // Handle form events
@@ -13,14 +16,37 @@ const Register = () => {
 
     // States for showing or hiding password
     const [visiblePassword, setVisiblePassword] = useState(false);
-    const [visibleConfirmPassword, setVisibleConfirmPassword] = useState(false)
+    const [visibleConfirmPassword, setVisibleConfirmPassword] = useState(false);
+
+    // Handle password eye
+    const handlePasswordClick = (event) => {
+        event.preventDefault();
+        setVisiblePassword(!visiblePassword);
+    };
+
+    // Handle confirm password eye
+    const handleConfirmPasswordClick = (event) => {
+        event.preventDefault();
+        setVisibleConfirmPassword(!visibleConfirmPassword);
+    };
 
     // Check password event 
-    const password = watch("password")
+    const password = watch("password");
+
+    // 'email-password' signIn provider from AuthContext API
+    const { createUser } = useContext(AuthContext);
 
     // Handle submit 
     const onSubmit = data => {
         console.log(data);
+        createUser(data.email, data.password)
+            .then(userCredential => {
+                const user = userCredential.user;
+                console.log(user);
+            })
+            .catch(error => {
+                console.log("error register", error.message);
+            });
     };
 
     return (
@@ -75,19 +101,21 @@ const Register = () => {
                                         placeholder="Enter Your Password"
                                         className="input input-bordered w-full"
                                     />
+                                    {errors.password?.type === "required" && <span className="text-red-600">Password is required.</span>}
+
+                                    {errors.password?.type === "minLength" && <span className="text-red-600">Password must not less than 6 characters.</span>}
+
+                                    {errors.password?.type === "pattern" && <span className="text-red-600">Password must have at least one upper case character, one lower case character, one number & one special character.</span>}
+
                                     <div className="p-2 text-xl 1/3 absolute right-1 -mr-3">
                                         {
                                             visiblePassword
-                                                ? <button onClick={() => setVisiblePassword(!visiblePassword)} className="btn btn-primary text-white"><FaEye /></button>
-                                                : <button onClick={() => setVisiblePassword(!visiblePassword)} className="btn btn-primary text-white"><FaEyeSlash /></button>
+                                                ? <button onClick={handlePasswordClick} className="btn btn-primary text-white"><FaEye /></button>
+                                                : <button onClick={handlePasswordClick} className="btn btn-primary text-white"><FaEyeSlash /></button>
                                         }
                                     </div>
                                 </div>
-                                {errors.password?.type === "required" && <span className="text-red-600">Password is required.</span>}
 
-                                {errors.password?.type === "minLength" && <span className="text-red-600">Password must not less than 6 characters.</span>}
-
-                                {errors.password?.type === "pattern" && <span className="text-red-600">Password must have at least one upper case character, one lower case character, one number & one special character.</span>}
                             </div>
 
                             {/* Registration :: Confirm Password Field */}
@@ -113,8 +141,8 @@ const Register = () => {
                                     <div className="p-2 text-xl 1/3 absolute right-1 -mr-3">
                                         {
                                             visibleConfirmPassword
-                                                ? <button onClick={() => setVisibleConfirmPassword(!visibleConfirmPassword)} className="btn btn-primary text-white"><FaEye /></button>
-                                                : <button onClick={() => setVisibleConfirmPassword(!visibleConfirmPassword)} className="btn btn-primary text-white"><FaEyeSlash /></button>
+                                                ? <button onClick={handleConfirmPasswordClick} className="btn btn-primary text-white"><FaEye /></button>
+                                                : <button onClick={handleConfirmPasswordClick} className="btn btn-primary text-white"><FaEyeSlash /></button>
                                         }
                                     </div>
                                 </div>

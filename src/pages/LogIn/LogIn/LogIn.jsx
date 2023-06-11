@@ -1,7 +1,12 @@
 import { useForm } from "react-hook-form";
 import LogInRedirect from "../../../components/LoginRedirect/LogInRedirect";
-import { useState } from "react";
+import { useContext, useState } from "react";
+
+// Importing "Eye" icon for showing/hiding password
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+
+// Importing 'email-password' signIn provider from AuthContext API
+import { AuthContext } from "../../../providers/AuthProvider/AuthProvider";
 
 const LogIn = () => {
     // Handle form events
@@ -12,9 +17,20 @@ const LogIn = () => {
     // State for showing or hiding password
     const [visiblePassword, setVisiblePassword] = useState(false);
 
+    // 'email-password' signIn provider from AuthContext API
+    const { signIn } = useContext(AuthContext);
+
     // Handle submit 
     const onSubmit = data => {
         console.log(data);
+        signIn(data.email, data.password)
+            .then(userCredential => {
+                const user = userCredential.user;
+                console.log(user);
+            })
+            .catch(error => {
+                console.log("error login:", error.message);
+            });
     };
 
     return (
