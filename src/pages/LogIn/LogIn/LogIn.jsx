@@ -10,6 +10,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 // Importing 'email-password' signIn provider from AuthContext API
 import { AuthContext } from "../../../providers/AuthProvider/AuthProvider";
+import SocialLogin from "../SocialLogIn/SocialLogin";
 
 const LogIn = () => {
     // User wished to go to a protected page, he/she is redirected to the login page. After the successful log in, the user will go towards the page he/she wished for.
@@ -121,6 +122,8 @@ const LogIn = () => {
                             URL="/register"
                             linkText="Register"
                         />
+
+                        <SocialLogin initialText="Log In with" />
                     </div>
                 </div>
             </div>

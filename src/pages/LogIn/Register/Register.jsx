@@ -3,13 +3,14 @@ import LogInRedirect from "../../../components/LoginRedirect/LogInRedirect";
 import { useContext, useState } from "react";
 
 // Importing "Eye" icon for showing/hiding password
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa';
 
 // Importing 'email-password' signIn provider from AuthContext API
 import { AuthContext } from "../../../providers/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import SocialLogin from "../SocialLogIn/SocialLogin";
 
 const Register = () => {
     const navigate = useNavigate();
@@ -215,6 +216,8 @@ const Register = () => {
                             URL="/login"
                             linkText="Log In"
                         />
+
+                        <SocialLogin initialText="Register with" />
                     </div>
                 </div>
             </div>
