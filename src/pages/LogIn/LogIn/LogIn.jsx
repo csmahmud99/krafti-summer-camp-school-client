@@ -9,6 +9,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 // Importing 'email-password' signIn provider from AuthContext API
 import { AuthContext } from "../../../providers/AuthProvider/AuthProvider";
+import { Helmet } from "react-helmet-async";
 
 const LogIn = () => {
     // User wished to go to a protected page, he/she is redirected to the login page. After the successful log in, the user will go towards the page he/she wished for.
@@ -59,6 +60,9 @@ const LogIn = () => {
 
     return (
         <>
+            <Helmet>
+                <title>Log In | Krafti - Summer Camp Learning School</title>
+            </Helmet>
             <div className="hero min-h-screen bg-base-200 pt-24 pb-10">
                 <div className="hero-content flex-col md:flex-row w-full">
                     <div className="text-center md:text-left">

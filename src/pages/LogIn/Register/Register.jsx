@@ -9,6 +9,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { AuthContext } from "../../../providers/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
     const navigate = useNavigate();
@@ -82,6 +83,9 @@ const Register = () => {
 
     return (
         <>
+            <Helmet>
+                <title>Register | Krafti - Summer Camp Learning School</title>
+            </Helmet>
             <div className="hero min-h-screen bg-base-200 pt-24 pb-10">
                 <div className="hero-content flex-col md:flex-row w-full">
                     <div className="text-center md:text-left">
