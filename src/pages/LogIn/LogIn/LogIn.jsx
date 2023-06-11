@@ -18,7 +18,7 @@ const LogIn = () => {
 
 
     // Handle form events
-    const { register, handleSubmit, formState: { errors } } = useForm({
+    const { register, handleSubmit, reset, formState: { errors } } = useForm({
         mode: "onTouched"
     });
 
@@ -41,6 +41,7 @@ const LogIn = () => {
             .then(userCredential => {
                 const user = userCredential.user;
                 console.log(user);
+                reset();
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',

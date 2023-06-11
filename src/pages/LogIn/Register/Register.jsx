@@ -14,7 +14,7 @@ const Register = () => {
     const navigate = useNavigate();
 
     // Handle form events
-    const { register, handleSubmit, watch, formState: { errors } } = useForm({
+    const { register, handleSubmit, watch, reset, formState: { errors } } = useForm({
         mode: "onTouched"
     });
 
@@ -38,7 +38,8 @@ const Register = () => {
     const password = watch("password");
 
     // 'email-password' signIn provider from AuthContext API
-    const { createUser } = useContext(AuthContext);
+    // Update a user's profile :: getting the user's name and photo-URL
+    const { createUser, updateUserProfile, logOut } = useContext(AuthContext);
 
     // Handle submit 
     const onSubmit = data => {
@@ -47,8 +48,16 @@ const Register = () => {
             .then(userCredential => {
                 const user = userCredential.user;
                 console.log(user);
+                updateUserProfile(data.name, data.photoURL)
+                    .then(() => {
+                        console.log("User Profile Info. is updated successfully.")
+                    })
+                    .catch(error => {
+                        console.log("Error: Update User Profile", error.message);
+                    });
+                reset();
                 Swal.fire({
-                    title: 'You have been successfully registered.',
+                    title: 'You have been successfully registered. Please Log In Now to go to your profile',
                     showClass: {
                         popup: 'animate__animated animate__fadeInDown'
                     },
@@ -56,7 +65,15 @@ const Register = () => {
                         popup: 'animate__animated animate__fadeOutUp'
                     }
                 });
-                navigate("/");
+                // Profile Image / Name not showing problem :: solution
+                logOut()
+                    .then(() => {
+                        console.log("Log Out is Successful after Sign Up");
+                    })
+                    .catch(error => {
+                        console.log("error log out", error.message);
+                    });
+                navigate("/login");
             })
             .catch(error => {
                 console.log("error register", error.message);

@@ -11,7 +11,7 @@ const NavigationBar = () => {
 
     // 'user' & 'system logOut' provider from AuthContext API
     const { user, logOut } = useContext(AuthContext);
-
+    console.log(user);
 
     // Handle LogOut
     const handleLogOut = () => {
@@ -68,7 +68,7 @@ const NavigationBar = () => {
                     {
                         user
                             ? <>
-                                <img className="w-10 rounded-full" src="https://i.pravatar.cc/150?img=3" />
+                                <img title={user?.displayName} className="w-10 rounded-full" src={user?.photoURL} alt="user-profile-image" />
                                 <button onClick={handleLogOut} className="btn">Log Out</button>
                             </>
                             : <>
