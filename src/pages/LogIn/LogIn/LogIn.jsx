@@ -3,13 +3,13 @@ import LogInRedirect from "../../../components/LoginRedirect/LogInRedirect";
 import { useContext, useState } from "react";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 // Importing "Eye" icon for showing/hiding password
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 // Importing 'email-password' signIn provider from AuthContext API
 import { AuthContext } from "../../../providers/AuthProvider/AuthProvider";
-import { Helmet } from "react-helmet-async";
 
 const LogIn = () => {
     // User wished to go to a protected page, he/she is redirected to the login page. After the successful log in, the user will go towards the page he/she wished for.
