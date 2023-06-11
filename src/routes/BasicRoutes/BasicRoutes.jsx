@@ -8,8 +8,11 @@ import Register from "../../pages/LogIn/Register/Register";
 import Secret from "../../pages/Secret/Secret";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import ErrorPage from "../../pages/ErrorPage/ErrorPage";
+import DashboardLayout from "../../layouts/DashBoardLayout/DashboardLayout";
+import AllUsers from "../../pages/Dashboard/AllUsers/AllUsers";
 
 const router = createBrowserRouter([
+    // Main/Basic Page Layout Routes
     {
         path: "/",
         element: <MainLayout />,
@@ -41,6 +44,19 @@ const router = createBrowserRouter([
             }
         ]
     },
+
+    // Dashboard Pages Layout Routes
+    {
+        path: "/dashboard",
+        element: <DashboardLayout />,
+        errorElement: <ErrorPage />,
+        children: [
+            {
+                path: "all-users",
+                element: <AllUsers />
+            }
+        ]
+    }
 ]);
 
 export default router;
