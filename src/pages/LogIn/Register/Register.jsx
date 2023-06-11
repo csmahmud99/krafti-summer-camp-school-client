@@ -44,37 +44,54 @@ const Register = () => {
 
     // Handle submit 
     const onSubmit = data => {
-        console.log(data);
+        // console.log(data);
         createUser(data.email, data.password)
             .then(userCredential => {
                 const user = userCredential.user;
                 console.log(user);
                 updateUserProfile(data.name, data.photoURL)
                     .then(() => {
-                        console.log("User Profile Info. is updated successfully.")
+                        // console.log("User Profile Info. is updated successfully.")
+                        const saveUser = {
+                            name: data.name,
+                            photo: data.photoURL,
+                            email: data.email
+                        };
+                        fetch("http://localhost:5000/users", {
+                            method: "POST",
+                            headers: {
+                                "content-type": "application/json"
+                            },
+                            body: JSON.stringify(saveUser)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.insertedId) {
+                                    reset();
+                                    Swal.fire({
+                                        title: 'You have been successfully registered. Please Log In Now to go to your profile',
+                                        showClass: {
+                                            popup: 'animate__animated animate__fadeInDown'
+                                        },
+                                        hideClass: {
+                                            popup: 'animate__animated animate__fadeOutUp'
+                                        }
+                                    });
+                                    // Profile Image / Name not showing problem :: solution
+                                    logOut()
+                                        .then(() => {
+                                            console.log("Log Out is Successful after Sign Up");
+                                        })
+                                        .catch(error => {
+                                            console.log("error log out", error.message);
+                                        });
+                                    navigate("/login");
+                                }
+                            });
                     })
                     .catch(error => {
                         console.log("Error: Update User Profile", error.message);
                     });
-                reset();
-                Swal.fire({
-                    title: 'You have been successfully registered. Please Log In Now to go to your profile',
-                    showClass: {
-                        popup: 'animate__animated animate__fadeInDown'
-                    },
-                    hideClass: {
-                        popup: 'animate__animated animate__fadeOutUp'
-                    }
-                });
-                // Profile Image / Name not showing problem :: solution
-                logOut()
-                    .then(() => {
-                        console.log("Log Out is Successful after Sign Up");
-                    })
-                    .catch(error => {
-                        console.log("error log out", error.message);
-                    });
-                navigate("/login");
             })
             .catch(error => {
                 console.log("error register", error.message);
