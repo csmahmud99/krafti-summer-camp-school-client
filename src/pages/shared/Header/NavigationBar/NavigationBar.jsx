@@ -39,12 +39,16 @@ const NavigationBar = () => {
         <li><Link to="/all-instructors">All Instructors</Link></li>
         <li><Link to="/all-classes">All Classes</Link></li>
         <li><Link to="/secret-page">Secret</Link></li>
-        <li><Link to="/dashboard/all-users">Dashboard</Link></li>
+        {
+            user
+                ? <Link to="/dashboard/all-users" className="btn btn-outline btn-sm bg-black text-yellow-400 ">My Dashboard</Link>
+                : <></>
+        }
     </>
 
     return (
         <>
-            <div className="navbar fixed z-10 bg-primary text-neutral-content px-7">
+            <div className="navbar fixed z-10 bg-primary text-neutral-content px-4">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
