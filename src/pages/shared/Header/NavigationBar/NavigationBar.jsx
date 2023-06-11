@@ -38,6 +38,7 @@ const NavigationBar = () => {
         <li><Link to="/">Home</Link></li>
         <li><Link to="/all-instructors">All Instructors</Link></li>
         <li><Link to="/all-classes">All Classes</Link></li>
+        <li><Link to="/secret-page">Secret</Link></li>
     </>
 
     return (

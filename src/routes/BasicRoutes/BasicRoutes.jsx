@@ -5,6 +5,8 @@ import AllInstructors from "../../pages/AllInstructors/AllInstructors";
 import AllClasses from "../../pages/AllClasses/AllClasses";
 import LogIn from "../../pages/LogIn/LogIn/LogIn";
 import Register from "../../pages/LogIn/Register/Register";
+import Secret from "../../pages/Secret/Secret";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -30,6 +32,10 @@ const router = createBrowserRouter([
             {
                 path: "/register",
                 element: <Register />
+            },
+            {
+                path: "/secret-page",
+                element: <PrivateRoute><Secret /></PrivateRoute>
             }
         ]
     },

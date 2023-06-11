@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import LogInRedirect from "../../../components/LoginRedirect/LogInRedirect";
 import { useContext, useState } from "react";
 import Swal from "sweetalert2";
+import { useLocation, useNavigate } from "react-router-dom";
 
 // Importing "Eye" icon for showing/hiding password
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -10,6 +11,12 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../../../providers/AuthProvider/AuthProvider";
 
 const LogIn = () => {
+    // User wished to go to a protected page, he/she is redirected to the login page. After the successful log in, the user will go towards the page he/she wished for.
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+
+
     // Handle form events
     const { register, handleSubmit, formState: { errors } } = useForm({
         mode: "onTouched"
@@ -40,7 +47,9 @@ const LogIn = () => {
                     title: 'Your have logged in successfully.',
                     showConfirmButton: false,
                     timer: 1500
-                })
+                });
+                // User wished to go to a protected page, he/she is redirected to the login page. After the successful log in, the user will go towards the page he/she wished for.
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 console.log("error login:", error.message);
