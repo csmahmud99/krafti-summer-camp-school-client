@@ -58,6 +58,7 @@ const Register = () => {
                             photo: data.photoURL,
                             email: data.email
                         };
+                        // Sending data to the backend to save registered user info into the database of MongoDB
                         fetch("http://localhost:5000/users", {
                             method: "POST",
                             headers: {

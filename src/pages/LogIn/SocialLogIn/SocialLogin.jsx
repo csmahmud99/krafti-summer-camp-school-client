@@ -22,6 +22,7 @@ const SocialLogin = ({ initialText }) => {
                     photo: loggedUser.photoURL,
                     email: loggedUser.email
                 };
+                // Sending data to the backend to save registered user info into the database of MongoDB
                 fetch("http://localhost:5000/users", {
                     method: "POST",
                     headers: {
@@ -35,14 +36,14 @@ const SocialLogin = ({ initialText }) => {
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',
-                                title: 'Your are in your account now',
+                                title: 'Your are in your account now.',
                                 showConfirmButton: false,
                                 timer: 1500
                             });
-                            // User wished to go to a protected page, he/she is redirected to the login page. After the successful log in, the user will go towards the page he/she wished for.
-                            navigate(from, { replace: true });
                         }
                     });
+                // User wished to go to a protected page, he/she is redirected to the login page. After the successful log in, the user will go towards the page he/she wished for.
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 console.log("error google sign in", error.message);
