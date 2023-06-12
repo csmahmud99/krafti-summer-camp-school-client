@@ -31,16 +31,14 @@ const SocialLogin = ({ initialText }) => {
                     body: JSON.stringify(saveUser)
                 })
                     .then(res => res.json())
-                    .then(data => {
-                        if (data.insertedId) {
-                            Swal.fire({
-                                position: 'top-end',
-                                icon: 'success',
-                                title: 'Your are in your account now.',
-                                showConfirmButton: false,
-                                timer: 1500
-                            });
-                        }
+                    .then(() => {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Your are in your account now.',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
                     });
                 // User wished to go to a protected page, he/she is redirected to the login page. After the successful log in, the user will go towards the page he/she wished for.
                 navigate(from, { replace: true });
