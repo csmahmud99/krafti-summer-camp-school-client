@@ -25,7 +25,29 @@ const AllUsers = () => {
                         title: `${user.name} is successfully made as an admin`,
                         showConfirmButton: false,
                         timer: 1500
-                    })
+                    });
+                }
+            });
+    };
+
+
+    // Make Instructor Function for the "Make Instructor" button
+    const handleMakeInstructor = user => {
+        fetch(`http://localhost:5000/users/instructor/${user._id}`, {
+            method: "PATCH"
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.modifiedCount) {
+                    refetch();
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: `${user.name} is successfully made as an instructor`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                 }
             });
     };
@@ -76,6 +98,8 @@ const AllUsers = () => {
                                         <td>
                                             <div className="text-sm opacity-75">{user.email}</div>
                                         </td>
+
+                                        {/* 'Make Admin' Button */}
                                         <td>
                                             {
                                                 user.role === "admin"
@@ -87,8 +111,18 @@ const AllUsers = () => {
                                                     </>
                                             }
                                         </td>
+
+                                        {/* 'Make Instructor' Button */}
                                         <td>
-                                            <button className="btn btn-outline bg-primary text-white btn-sm">Make Instructor</button>
+                                            {
+                                                user.role === "instructor"
+                                                    ? <>
+                                                        <button className="btn btn-outline bg-primary text-white btn-sm" disabled>Make Instructor</button>
+                                                    </>
+                                                    : <>
+                                                        <button onClick={() => handleMakeInstructor(user)} className="btn btn-outline bg-primary text-white btn-sm">Make Instructor</button>
+                                                    </>
+                                            }
                                         </td>
                                     </tr>)
                                 }
