@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
+import Swal from "sweetalert2";
 
 const AllUsers = () => {
     // Using of TanStack Query/React Query for fetching users data from MongoDB to Client-side
@@ -7,6 +8,27 @@ const AllUsers = () => {
         const res = await fetch("http://localhost:5000/users");
         return res.json();
     });
+
+    // Make Admin Function for the "Make Admin" button
+    const handleMakeAdmin = user => {
+        fetch(`http://localhost:5000/users/admin/${user._id}`, {
+            method: "PATCH"
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.modifiedCount) {
+                    refetch();
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: `${user.name} is successfully made as an admin`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            });
+    };
 
     return (
         <>
@@ -37,8 +59,8 @@ const AllUsers = () => {
                             </thead>
                             <tbody>
                                 {
-                                    users.map(user => <tr key={user._id}>
-                                        <th>1</th>
+                                    users.map((user, index) => <tr key={user._id}>
+                                        <th>{index + 1}</th>
                                         <td>
                                             <div className="flex items-center space-x-3">
                                                 <div className="avatar">
@@ -54,12 +76,20 @@ const AllUsers = () => {
                                         <td>
                                             <div className="text-sm opacity-75">{user.email}</div>
                                         </td>
-                                        <th>
-                                            <button className="btn btn-outline bg-primary text-white btn-sm">Make Admin</button>
-                                        </th>
-                                        <th>
+                                        <td>
+                                            {
+                                                user.role === "admin"
+                                                    ? <>
+                                                        <button className="btn btn-outline bg-primary text-white btn-sm" disabled>Make Admin</button>
+                                                    </>
+                                                    : <>
+                                                        <button onClick={() => handleMakeAdmin(user)} className="btn btn-outline bg-primary text-white btn-sm">Make Admin</button>
+                                                    </>
+                                            }
+                                        </td>
+                                        <td>
                                             <button className="btn btn-outline bg-primary text-white btn-sm">Make Instructor</button>
-                                        </th>
+                                        </td>
                                     </tr>)
                                 }
                             </tbody>
