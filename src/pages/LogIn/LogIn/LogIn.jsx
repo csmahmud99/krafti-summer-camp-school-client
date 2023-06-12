@@ -41,8 +41,8 @@ const LogIn = () => {
         console.log(data);
         signIn(data.email, data.password)
             .then(userCredential => {
-                const user = userCredential.user;
-                console.log(user);
+                const loggedUser = userCredential.user;
+                console.log(loggedUser);
                 reset();
                 Swal.fire({
                     position: 'top-end',

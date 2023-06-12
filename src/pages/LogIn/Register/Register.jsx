@@ -3,7 +3,7 @@ import LogInRedirect from "../../../components/LoginRedirect/LogInRedirect";
 import { useContext, useState } from "react";
 
 // Importing "Eye" icon for showing/hiding password
-import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 // Importing 'email-password' signIn provider from AuthContext API
 import { AuthContext } from "../../../providers/AuthProvider/AuthProvider";
@@ -48,8 +48,8 @@ const Register = () => {
         // console.log(data);
         createUser(data.email, data.password)
             .then(userCredential => {
-                const user = userCredential.user;
-                console.log(user);
+                const loggedUser = userCredential.user;
+                console.log(loggedUser);
                 updateUserProfile(data.name, data.photoURL)
                     .then(() => {
                         // console.log("User Profile Info. is updated successfully.")
