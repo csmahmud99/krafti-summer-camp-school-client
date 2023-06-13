@@ -3,15 +3,19 @@ import SectionTitle from "../../../../components/sectionTitle/sectionTitle";
 import { useContext } from "react";
 import { AuthContext } from "../../../../providers/AuthProvider/AuthProvider";
 import { useForm } from 'react-hook-form';
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 // Image Hosting Token
 const imageHostingToken = import.meta.env.VITE_imageUploadToken;
 
 const AddClass = () => {
+    const [axiosSecure] = useAxiosSecure();
+
     const { user } = useContext(AuthContext);
 
     // React Hook Form Assets
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset } = useForm();
 
     // Image Hosting URL
     const imageHostingURL = `https://api.imgbb.com/1/upload?key=${imageHostingToken}`;
@@ -40,15 +44,29 @@ const AddClass = () => {
                         seats: parseInt(seats),
                         price: parseFloat(price),
                         image: imageURL,
-                        status: 'pending',
+                        status: "pending",
                         enroll: 0,
                     };
                     console.log(newClass);
+                    axiosSecure.post("/classes", newClass)
+                        .then(data => {
+                            console.log("After posting new class:", data.data);
+                            if (data.data.insertedId) {
+                                reset();
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'success',
+                                    title: 'The class have been added successfully',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                            }
+                        })
                 }
             });
     };
-    console.log(errors);
-    console.log(imageHostingToken);
+    // console.log(errors);
+    // console.log(imageHostingToken);
 
     return (
         <>
