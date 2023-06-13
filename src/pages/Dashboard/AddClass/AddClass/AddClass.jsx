@@ -27,27 +27,18 @@ const AddClass = () => {
                     />
                     <div>
                         <form onSubmit={handleSubmit(onSubmit)}>
+
+                            {/* Course/Class Name */}
+                            <div className="form-control w-full">
+                                <label className="label">
+                                    <span className="label-text font-bold">Class Name</span>
+                                </label>
+                                <input type="text" placeholder="Enter Class Name" {...register("class", { required: true, maxLength: 40 })} className="input input-bordered w-full" />
+                            </div>
+
                             <div className="grid md:grid-cols-2 gap-5 mt-5">
-                                {/* Course/Class Name */}
-                                <div className="form-control w-full max-w-xs">
-                                    <label className="label">
-                                        <span className="label-text font-bold">Class Name</span>
-                                    </label>
-                                    <input type="text" placeholder="Enter Class Name" {...register("class", { required: true, maxLength: 40 })} className="input input-bordered w-full" />
-                                </div>
-
-
-                                {/* Choose Image File */}
-                                <div className="form-control w-full max-w-xs">
-                                    <label className="label">
-                                        <span className="label-text font-bold">Pick a file from your device*</span>
-                                    </label>
-                                    <input type="file" className="file-input file-input-bordered file-input-primary w-full max-w-xs" />
-                                </div>
-
-
                                 {/* Instructor's Read-only Default Name */}
-                                <div className="form-control w-full max-w-xs">
+                                <div className="form-control w-full">
                                     <label className="label">
                                         <span className="label-text font-bold">Instructor Name</span>
                                     </label>
@@ -56,7 +47,7 @@ const AddClass = () => {
 
 
                                 {/* Instructor's Read-only Default email */}
-                                <div className="form-control w-full max-w-xs">
+                                <div className="form-control w-full">
                                     <label className="label">
                                         <span className="label-text font-bold">Instructor Email</span>
                                     </label>
@@ -65,7 +56,7 @@ const AddClass = () => {
 
 
                                 {/* Available Seats for the Course/Class */}
-                                <div className="form-control w-full max-w-xs">
+                                <div className="form-control w-full">
                                     <label className="label">
                                         <span className="label-text font-bold">Available Seats*</span>
                                     </label>
@@ -74,12 +65,20 @@ const AddClass = () => {
 
 
                                 {/* Price for the Course/Class */}
-                                <div className="form-control w-full max-w-xs">
+                                <div className="form-control w-full">
                                     <label className="label">
                                         <span className="label-text font-bold">Price*</span>
                                     </label>
                                     <input type="number" placeholder="Enter Class Price" {...register("price", { required: true })} className="input input-bordered w-full" />
                                 </div>
+                            </div>
+
+                            {/* Choose Image File */}
+                            <div className="form-control w-full mt-5">
+                                <label className="label">
+                                    <span className="label-text font-bold">Class Banner: Pick a file from your device*</span>
+                                </label>
+                                <input type="file" {...register("image", { required: true })} className="file-input file-input-bordered file-input-primary w-full" />
                             </div>
 
                             <div className="text-center my-5">
