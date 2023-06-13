@@ -6,7 +6,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 const AllUsers = () => {
     const [axiosSecure] = useAxiosSecure();
 
-    // Using of TanStack Query/React Query for fetching users data from MongoDB to Client-side || Using axiosSecure for calling the API
+    // Using of TanStack Query/React Query (short-form, not the object-form) for fetching users data from MongoDB to Client-side || Using 'axiosSecure' for calling the API
     const { data: users = [], refetch } = useQuery(["users"], async () => {
         const res = await axiosSecure.get("/users");
         console.log("Response from axios:", res);

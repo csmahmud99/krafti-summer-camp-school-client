@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../../assets/logos/krafti-logo.png";
 import { useContext } from "react";
 import Swal from "sweetalert2";
+import useAdmin from "../../../../hooks/useAdmin";
 
 // Importing 'user' and 'system logout' provider from AuthContext API
 import { AuthContext } from "../../../../providers/AuthProvider/AuthProvider";
@@ -12,6 +13,9 @@ const NavigationBar = () => {
     // 'user' & 'system logOut' provider from AuthContext API
     const { user, logOut } = useContext(AuthContext);
     console.log(user);
+
+    const [isAdmin] = useAdmin();
+    // const isAdmin = true;
 
     // Handle LogOut
     const handleLogOut = () => {
@@ -38,11 +42,34 @@ const NavigationBar = () => {
         <li><Link to="/">Home</Link></li>
         <li><Link to="/all-instructors">All Instructors</Link></li>
         <li><Link to="/all-classes">All Classes</Link></li>
+
         {
             user
-                ? <Link to="/dashboard/all-users" className="btn btn-outline btn-sm bg-black text-yellow-400 ">My Dashboard</Link>
+                ? <>
+                    {
+                        isAdmin
+                            ? <Link to="/dashboard/all-users" className="btn btn-outline btn-sm bg-black text-yellow-400 ">My Dashboard</Link>
+
+                            : <Link to="/dashboard/my-selected-classes" className="btn btn-outline btn-sm bg-black text-yellow-400 ">My Dashboard</Link>
+                    }
+                </>
                 : <></>
         }
+
+
+        {/*         {
+            isAdmin
+                ? <Link to="/dashboard/all-users" className="btn btn-outline btn-sm bg-black text-yellow-400 ">My Dashboard</Link>
+
+                : user
+                    ? <Link to="/dashboard/my-selected-classes" className="btn btn-outline btn-sm bg-black text-yellow-400 ">My Dashboard</Link>
+                    : <></>
+        } */}
+{/*         {
+            user
+                ? <Link to="/dashboard" className="btn btn-outline btn-sm bg-black text-yellow-400 ">My Dashboard</Link>
+                : <></>
+        } */}
     </>
 
     return (

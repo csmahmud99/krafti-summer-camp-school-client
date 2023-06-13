@@ -9,6 +9,10 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import ErrorPage from "../../pages/ErrorPage/ErrorPage";
 import DashboardLayout from "../../layouts/DashBoardLayout/DashboardLayout";
 import AllUsers from "../../pages/Dashboard/AllUsers/AllUsers";
+import ManageClasses from "../../pages/Dashboard/ManageClasses/ManageClasses/ManageClasses";
+import MySelectedClasses from "../../pages/Dashboard/MySelectedClasses/MySelectedClasses/MySelectedClasses";
+import MyEnrolledClasses from "../../pages/Dashboard/MyEnrolledClasses/MyEnrolledClasses/MyEnrolledClasses";
+import AdminRoute from "../AdminRoute/AdminRoute";
 
 const router = createBrowserRouter([
     // Main/Basic Page Layout Routes
@@ -48,8 +52,20 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "all-users",
-                element: <AllUsers />
-            }
+                element: <AdminRoute><AllUsers /></AdminRoute>
+            },
+            {
+                path: "manage-classes",
+                element: <AdminRoute><ManageClasses /></AdminRoute>
+            },
+            {
+                path: "my-selected-classes",
+                element: <MySelectedClasses />
+            },
+            {
+                path: "my-enrolled-classes",
+                element: <MyEnrolledClasses />
+            },
         ]
     }
 ]);
