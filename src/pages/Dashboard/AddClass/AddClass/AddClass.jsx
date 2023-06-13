@@ -14,7 +14,7 @@ const AddClass = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     // Image Hosting URL
-    const imageHostingURL = `https://api.imgbb.com/1/upload?expiration=600&key=${imageHostingToken}`;
+    const imageHostingURL = `https://api.imgbb.com/1/upload?key=${imageHostingToken}`;
 
     const onSubmit = data => {
         // console.log(data);
@@ -28,7 +28,23 @@ const AddClass = () => {
         })
             .then(res => res.json())
             .then(imageResponse => {
-                console.log(imageResponse);
+                // console.log(imageResponse);
+                if (imageResponse.success) {
+                    const imageURL = imageResponse.data.display_url;
+                    // console.log(imageURL);
+                    const { nameClass, instructorName, instructorEmail, seats, price } = data;
+                    const newClass = {
+                        nameClass,
+                        instructorName,
+                        instructorEmail,
+                        seats: parseInt(seats),
+                        price: parseFloat(price),
+                        image: imageURL,
+                        status: 'pending',
+                        enroll: 0,
+                    };
+                    console.log(newClass);
+                }
             });
     };
     console.log(errors);
@@ -53,7 +69,7 @@ const AddClass = () => {
                                 <label className="label">
                                     <span className="label-text font-bold">Class Name</span>
                                 </label>
-                                <input type="text" placeholder="Enter Class Name" {...register("class", { required: true, maxLength: 40 })} className="input input-bordered w-full" />
+                                <input type="text" placeholder="Enter Class Name" {...register("nameClass", { required: true, maxLength: 40 })} className="input input-bordered w-full" />
                             </div>
 
                             <div className="grid md:grid-cols-2 gap-5 mt-5">
