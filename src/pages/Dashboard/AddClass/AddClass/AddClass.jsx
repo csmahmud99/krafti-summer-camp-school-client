@@ -4,15 +4,35 @@ import { useContext } from "react";
 import { AuthContext } from "../../../../providers/AuthProvider/AuthProvider";
 import { useForm } from 'react-hook-form';
 
+// Image Hosting Token
+const imageHostingToken = import.meta.env.VITE_imageUploadToken;
+
 const AddClass = () => {
     const { user } = useContext(AuthContext);
 
     // React Hook Form Assets
     const { register, handleSubmit, formState: { errors } } = useForm();
+
+    // Image Hosting URL
+    const imageHostingURL = `https://api.imgbb.com/1/upload?expiration=600&key=${imageHostingToken}`;
+
     const onSubmit = data => {
-        console.log(data);
+        // console.log(data);
+
+        const formData = new FormData();
+        formData.append("image", data.image[0]);
+
+        fetch(imageHostingURL, {
+            method: "POST",
+            body: formData
+        })
+            .then(res => res.json())
+            .then(imageResponse => {
+                console.log(imageResponse);
+            });
     };
     console.log(errors);
+    console.log(imageHostingToken);
 
     return (
         <>
