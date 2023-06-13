@@ -13,6 +13,9 @@ import ManageClasses from "../../pages/Dashboard/ManageClasses/ManageClasses/Man
 import MySelectedClasses from "../../pages/Dashboard/MySelectedClasses/MySelectedClasses/MySelectedClasses";
 import MyEnrolledClasses from "../../pages/Dashboard/MyEnrolledClasses/MyEnrolledClasses/MyEnrolledClasses";
 import AdminRoute from "../AdminRoute/AdminRoute";
+import MyClasses from "../../pages/Dashboard/MyClasses/MyClasses/MyClasses";
+import AddClass from "../../pages/Dashboard/AddClass/AddClass/AddClass";
+import InstructorRoute from "../InstructorRoute/InstructorRoute";
 
 const router = createBrowserRouter([
     // Main/Basic Page Layout Routes
@@ -57,6 +60,14 @@ const router = createBrowserRouter([
             {
                 path: "manage-classes",
                 element: <AdminRoute><ManageClasses /></AdminRoute>
+            },
+            {
+                path: "my-classes",
+                element: <InstructorRoute><MyClasses /></InstructorRoute>
+            },
+            {
+                path: "add-class",
+                element: <InstructorRoute><AddClass /></InstructorRoute>
             },
             {
                 path: "my-selected-classes",

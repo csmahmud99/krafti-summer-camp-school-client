@@ -1,11 +1,13 @@
 import { FaBookmark, FaChalkboard, FaChalkboardTeacher, FaClipboardCheck, FaClipboardList, FaFolderPlus, FaHome, FaUsers } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
+import useInstructor from "../../hooks/useInstructor";
 
 const DashboardLayout = () => {
     // TODO :: Load data from the server to have dynamic isAdmin based on data
     // const isAdmin = true;
     const [isAdmin] = useAdmin();
+    const [isInstructor] = useInstructor();
 
     return (
         <>
@@ -29,12 +31,13 @@ const DashboardLayout = () => {
 
                                     <li><NavLink to="/dashboard/manage-classes"><FaChalkboard />Manage Classes</NavLink></li>
                                 </>
-                               /*  : isInstructor
+                                : isInstructor
                                     ? <>
+                                        <li><NavLink to="/dashboard/my-classes"><FaClipboardList />My Classes</NavLink></li>
+
                                         <li><NavLink to="/dashboard/add-class"><FaFolderPlus />Add a Class</NavLink></li>
 
-                                        <li><NavLink to="/dashboard/my-classes"><FaClipboardList />My Classes</NavLink></li>
-                                    </> */
+                                    </>
                                     : <>
                                         <li><NavLink to="/dashboard/my-selected-classes"><FaBookmark />My Selected Classes</NavLink></li>
 

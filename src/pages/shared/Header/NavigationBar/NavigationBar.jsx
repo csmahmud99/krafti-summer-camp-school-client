@@ -6,16 +6,19 @@ import useAdmin from "../../../../hooks/useAdmin";
 
 // Importing 'user' and 'system logout' provider from AuthContext API
 import { AuthContext } from "../../../../providers/AuthProvider/AuthProvider";
+import useInstructor from "../../../../hooks/useInstructor";
 
 const NavigationBar = () => {
     const navigate = useNavigate();
 
     // 'user' & 'system logOut' provider from AuthContext API
-    const { user, logOut } = useContext(AuthContext);
+    const { user, logOut, loading } = useContext(AuthContext);
     console.log(user);
 
-    const [isAdmin] = useAdmin();
     // const isAdmin = true;
+    const [isAdmin, isAdminLoading] = useAdmin();
+    const [isInstructor, isInstructorLoading] = useInstructor();
+    console.log(isInstructor);
 
     // Handle LogOut
     const handleLogOut = () => {
@@ -48,30 +51,36 @@ const NavigationBar = () => {
                 ? <>
                     {
                         isAdmin
-                            ? <Link to="/dashboard/all-users" className="btn btn-outline btn-sm bg-black text-yellow-400 ">My Dashboard</Link>
-
-                            : <Link to="/dashboard/my-selected-classes" className="btn btn-outline btn-sm bg-black text-yellow-400 ">My Dashboard</Link>
+                            ? <Link to="/dashboard/all-users" className="btn btn-outline btn-sm bg-black text-yellow-400 ">Admin Dashboard</Link>
+                            : isInstructor
+                                ? <Link to="/dashboard/my-classes" className="btn btn-outline btn-sm bg-black text-yellow-400 ">Instructor Dashboard</Link>
+                                : <Link to="/dashboard/my-selected-classes" className="btn btn-outline btn-sm bg-black text-yellow-400 ">Student Dashboard</Link>
                     }
                 </>
                 : <></>
         }
 
-
         {/*         {
             isAdmin
                 ? <Link to="/dashboard/all-users" className="btn btn-outline btn-sm bg-black text-yellow-400 ">My Dashboard</Link>
 
-                : user
-                    ? <Link to="/dashboard/my-selected-classes" className="btn btn-outline btn-sm bg-black text-yellow-400 ">My Dashboard</Link>
-                    : <></>
+                : isInstructor
+                    ? <Link to="/dashboard/my-classes" className="btn btn-outline btn-sm bg-black text-yellow-400 ">My Dashboard</Link>
+
+                    : user
+                        ? <Link to="/dashboard/my-selected-classes" className="btn btn-outline btn-sm bg-black text-yellow-400 ">My Dashboard</Link>
+                        : <></>
         } */}
-{/*         {
+
+        {/*         {
             user
                 ? <Link to="/dashboard" className="btn btn-outline btn-sm bg-black text-yellow-400 ">My Dashboard</Link>
                 : <></>
         } */}
     </>
-
+    if (loading || isAdminLoading || isInstructorLoading) {
+        <progress className="progress w-56"></progress>
+    }
     return (
         <>
             <div className="navbar fixed z-10 bg-primary text-neutral-content px-4">
