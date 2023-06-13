@@ -1,8 +1,95 @@
+import { Helmet } from "react-helmet-async";
+import SectionTitle from "../../../../components/sectionTitle/sectionTitle";
+import { useContext } from "react";
+import { AuthContext } from "../../../../providers/AuthProvider/AuthProvider";
+import { useForm } from 'react-hook-form';
+
 const AddClass = () => {
+    const { user } = useContext(AuthContext);
+
+    // React Hook Form Assets
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const onSubmit = data => {
+        console.log(data);
+    };
+    console.log(errors);
+
     return (
-        <div>
-            <h2 className="my-36">Add a Class Page</h2>
-        </div>
+        <>
+            <div>
+                <Helmet>
+                    <title>Add a Class | Krafti - Summer Camp Learning School</title>
+                </Helmet>
+                <section className="bg-slate-200 py-8 px-5">
+                    <SectionTitle
+                        subHeading="Teach Something New"
+                        heading="Add a Class"
+                    />
+                    <div>
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <div className="grid md:grid-cols-2 gap-5 mt-5">
+                                {/* Course/Class Name */}
+                                <div className="form-control w-full max-w-xs">
+                                    <label className="label">
+                                        <span className="label-text font-bold">Class Name</span>
+                                    </label>
+                                    <input type="text" placeholder="Enter Class Name" {...register("class", { required: true, maxLength: 40 })} className="input input-bordered w-full" />
+                                </div>
+
+
+                                {/* Choose Image File */}
+                                <div className="form-control w-full max-w-xs">
+                                    <label className="label">
+                                        <span className="label-text font-bold">Pick a file from your device*</span>
+                                    </label>
+                                    <input type="file" className="file-input file-input-bordered file-input-primary w-full max-w-xs" />
+                                </div>
+
+
+                                {/* Instructor's Read-only Default Name */}
+                                <div className="form-control w-full max-w-xs">
+                                    <label className="label">
+                                        <span className="label-text font-bold">Instructor Name</span>
+                                    </label>
+                                    <input type="text" defaultValue={user?.displayName} {...register("instructorName", { required: true })} className="input input-bordered w-full" readOnly />
+                                </div>
+
+
+                                {/* Instructor's Read-only Default email */}
+                                <div className="form-control w-full max-w-xs">
+                                    <label className="label">
+                                        <span className="label-text font-bold">Instructor Email</span>
+                                    </label>
+                                    <input type="text" defaultValue={user?.email} {...register("instructorEmail", { required: true })} className="input input-bordered w-full" readOnly />
+                                </div>
+
+
+                                {/* Available Seats for the Course/Class */}
+                                <div className="form-control w-full max-w-xs">
+                                    <label className="label">
+                                        <span className="label-text font-bold">Available Seats*</span>
+                                    </label>
+                                    <input type="number" placeholder="Number of Available Seats" {...register("seats", { required: true })} className="input input-bordered w-full" />
+                                </div>
+
+
+                                {/* Price for the Course/Class */}
+                                <div className="form-control w-full max-w-xs">
+                                    <label className="label">
+                                        <span className="label-text font-bold">Price*</span>
+                                    </label>
+                                    <input type="number" placeholder="Enter Class Price" {...register("price", { required: true })} className="input input-bordered w-full" />
+                                </div>
+                            </div>
+
+                            <div className="text-center my-5">
+                                <input type="submit" value="Add Class" className="btn btn-outline bg-primary text-white" />
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </>
     );
 };
 

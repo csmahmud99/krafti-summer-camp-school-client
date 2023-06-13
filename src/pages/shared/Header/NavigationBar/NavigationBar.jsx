@@ -13,12 +13,12 @@ const NavigationBar = () => {
 
     // 'user' & 'system logOut' provider from AuthContext API
     const { user, logOut, loading } = useContext(AuthContext);
-    console.log(user);
+    // console.log(user);
 
     // const isAdmin = true;
     const [isAdmin, isAdminLoading] = useAdmin();
     const [isInstructor, isInstructorLoading] = useInstructor();
-    console.log(isInstructor);
+    // console.log(isInstructor);
 
     // Handle LogOut
     const handleLogOut = () => {
@@ -78,6 +78,8 @@ const NavigationBar = () => {
                 : <></>
         } */}
     </>
+
+    // Off the tiny-time other dashboard button load after logging-in
     if (loading || isAdminLoading || isInstructorLoading) {
         <progress className="progress w-56"></progress>
     }
