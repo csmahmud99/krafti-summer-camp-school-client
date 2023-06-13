@@ -1,12 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const AllUsers = () => {
-    // Using of TanStack Query/React Query for fetching users data from MongoDB to Client-side
+    const [axiosSecure] = useAxiosSecure();
+
+    // Using of TanStack Query/React Query for fetching users data from MongoDB to Client-side || Using axiosSecure for calling the API
     const { data: users = [], refetch } = useQuery(["users"], async () => {
-        const res = await fetch("http://localhost:5000/users");
-        return res.json();
+        const res = await axiosSecure.get("/users");
+        console.log("Response from axios:", res);
+        return res.data;
     });
 
     // Make Admin Function for the "Make Admin" button
