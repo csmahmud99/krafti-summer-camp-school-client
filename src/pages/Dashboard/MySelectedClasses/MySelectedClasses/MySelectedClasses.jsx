@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import SectionTitle from "../../../../components/sectionTitle/sectionTitle";
 import useSelectClass from "../../../../hooks/useSelectClass";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 
 const MySelectedClasses = () => {
     const [selectClass, refetch] = useSelectClass();

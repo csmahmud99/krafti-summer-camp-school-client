@@ -36,7 +36,7 @@ const Home = () => {
 
                     <div className="grid md:grid-cols-3 gap-5 pb-20 px-8 rounded-md">
                         {
-                            popularClasses.map(popularClass => <div key={popularClasses._id} className="card w-96 bg-base-100 shadow-xl">
+                            popularClasses.map(popularClass => <div key={popularClass._id} className="card w-96 bg-base-100 shadow-xl">
                                 <figure className="px-10 pt-10">
                                     <img src={popularClass?.image} alt="class-banner" className="rounded-xl" />
                                 </figure>
