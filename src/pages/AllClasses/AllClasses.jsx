@@ -32,7 +32,6 @@ const AllClasses = () => {
 
     const approvedClasses = classes?.filter(allClasses => allClasses?.status === "Approved");
 
-
     const handleSelectClass = (selectedClass) => {
         const { nameClass, image, instructorEmail, instructorName, price, seats, _id, enroll } = selectedClass || {};
 
@@ -84,7 +83,7 @@ const AllClasses = () => {
 
                     <div className="grid md:grid-cols-3 gap-5 ml-10 mr-10 bg-slate-200 py-16 mt-12 px-8">
                         {
-                            approvedClasses.map(approvedClass => <div key={approvedClass._id} className="card w-96 bg-base-100 shadow-xl">
+                            approvedClasses.map(approvedClass => <div key={approvedClass._id} className={`card w-96 shadow-xl ${approvedClass?.seats === 0 ? "bg-red-300" : "bg-base-100"}`}>
                                 <figure className="px-10 pt-10">
                                     <img src={approvedClass?.image} alt="class-banner" className="rounded-xl" />
                                 </figure>
@@ -98,7 +97,7 @@ const AllClasses = () => {
 
                                     <div className="card-actions">
                                         {
-                                            <button disabled={isAdmin || isInstructor || selectedId.includes(approvedClass._id)} onClick={() => handleSelectClass(approvedClass)} className="btn btn-primary">Select</button>
+                                            <button disabled={isAdmin || isInstructor || selectedId.includes(approvedClass._id) || approvedClass?.seats === 0} onClick={() => handleSelectClass(approvedClass)} className="btn btn-primary">Select</button>
                                         }
                                     </div>
                                 </div>
