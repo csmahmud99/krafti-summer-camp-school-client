@@ -16,6 +16,7 @@ import AdminRoute from "../AdminRoute/AdminRoute";
 import MyClasses from "../../pages/Dashboard/MyClasses/MyClasses/MyClasses";
 import AddClass from "../../pages/Dashboard/AddClass/AddClass/AddClass";
 import InstructorRoute from "../InstructorRoute/InstructorRoute";
+import UpdateClass from "../../pages/Dashboard/MyClasses/MyClasses/UpdateClass/UpdateClass";
 
 const router = createBrowserRouter([
     // Main/Basic Page Layout Routes
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
             {
                 path: "add-class",
                 element: <InstructorRoute><AddClass /></InstructorRoute>
+            },
+            {
+                path: "update-class/:id",
+                element: <InstructorRoute><UpdateClass /></InstructorRoute>
             },
             {
                 path: "my-selected-classes",

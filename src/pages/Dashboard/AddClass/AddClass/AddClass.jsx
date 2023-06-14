@@ -44,7 +44,7 @@ const AddClass = () => {
                         seats: parseInt(seats),
                         price: parseFloat(price),
                         image: imageURL,
-                        status: "pending",
+                        status: "Pending",
                         enroll: 0,
                     };
                     console.log(newClass);
@@ -72,7 +72,7 @@ const AddClass = () => {
         <>
             <div>
                 <Helmet>
-                    <title>Add a Class | Krafti - Summer Camp Learning School</title>
+                    <title>Add a Class - Instructor | Krafti - Summer Camp Learning School</title>
                 </Helmet>
                 <section className="bg-slate-200 py-8 px-5">
                     <SectionTitle
