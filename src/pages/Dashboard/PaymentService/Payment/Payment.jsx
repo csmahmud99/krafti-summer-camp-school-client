@@ -11,8 +11,8 @@ const Payment = () => {
     const [selectClass] = useSelectClass();
     const { id } = useParams();
     const enrollClass = selectClass.find(thisClass => thisClass._id === id);
-    console.log(id);
-    console.log(enrollClass);
+    // console.log(id);
+    // console.log(enrollClass);
 
     return (
         <>

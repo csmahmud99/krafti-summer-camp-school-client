@@ -18,7 +18,7 @@ const UpdateClass = () => {
         return res.data;
     });
 
-    console.log(myClass);
+    // console.log(myClass);
 
     const { nameClass, image, price, seats } = myClass;
 
@@ -39,7 +39,7 @@ const UpdateClass = () => {
                         'success'
                     );
                 }
-                console.log('after add a new data', data.data);
+                // console.log('after add a new data', data.data);
             });
     };
 

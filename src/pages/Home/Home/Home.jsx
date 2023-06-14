@@ -14,7 +14,7 @@ const Home = () => {
         return res.data;
     });
 
-    console.log(popularClasses);
+    // console.log(popularClasses);
 
     return (
         <>

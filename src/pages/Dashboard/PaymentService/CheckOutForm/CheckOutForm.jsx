@@ -44,10 +44,10 @@ const CheckOutForm = ({ enrollClass }) => {
         })
 
         if (error) {
-            console.log('error message:', error);
+            // console.log('error message:', error);
             setCardError(error.message);
         } else {
-            console.log('paymentMethod:', paymentMethod)
+            // console.log('paymentMethod:', paymentMethod)
             setCardError('');
         }
 
@@ -66,9 +66,9 @@ const CheckOutForm = ({ enrollClass }) => {
         );
 
         if (confirmError) {
-            console.log(confirmError);
+            // console.log(confirmError);
         }
-        console.log(paymentIntent);
+        // console.log(paymentIntent);
         setProcessing(false)
         if (paymentIntent.status === 'succeeded') {
             setTransactionId(paymentIntent.id);
@@ -91,7 +91,7 @@ const CheckOutForm = ({ enrollClass }) => {
             }
             axiosSecure.post('/payments', payment)
                 .then(res => {
-                    console.log(res.data);
+                    // console.log(res.data);
                     if (res.data.result.insertedId) {
                         // display confirm
                     }

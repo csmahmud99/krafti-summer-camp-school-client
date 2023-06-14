@@ -47,10 +47,10 @@ const AddClass = () => {
                         status: "Pending",
                         enroll: 0,
                     };
-                    console.log(newClass);
+                    // console.log(newClass);
                     axiosSecure.post("/classes", newClass)
                         .then(data => {
-                            console.log("After posting new class:", data.data);
+                            // console.log("After posting new class:", data.data);
                             if (data.data.insertedId) {
                                 reset();
                                 Swal.fire({

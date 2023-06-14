@@ -22,7 +22,7 @@ const AllClasses = () => {
 
     const selectedId = selectClass.map(singleSelectClass => singleSelectClass.classId);
 
-    console.log(selectedId);
+    // console.log(selectedId);
 
     // Using 'TanStack Query/React Query' with 'Axios Interceptor' for getting all approved classes created by the instructors and approved by the admin to show them on the UI/client-side 
     const { data: classes = [] } = useQuery(["classes"], async () => {
@@ -39,9 +39,9 @@ const AllClasses = () => {
             const selectClass = { nameClass, image, instructorEmail, email: user?.email, instructorName, price, seats, classId: _id, enroll, status: "Selected" };
             axiosSecure.post("/selectClass", selectClass)
                 .then(data => {
-                    console.log(data);
+                    // console.log(data);
                     if (data.data.insertedId) {
-                        console.log(data.data.insertedId);
+                        // console.log(data.data.insertedId);
                         refetch();
                         Swal.fire({
                             icon: 'success',

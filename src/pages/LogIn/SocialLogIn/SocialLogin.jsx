@@ -16,7 +16,7 @@ const SocialLogin = ({ initialText }) => {
         googleSignIn()
             .then(result => {
                 const loggedUser = result.user;
-                console.log("social log in:", loggedUser);
+                // console.log("social log in:", loggedUser);
                 const saveUser = {
                     name: loggedUser.displayName,
                     photo: loggedUser.photoURL,

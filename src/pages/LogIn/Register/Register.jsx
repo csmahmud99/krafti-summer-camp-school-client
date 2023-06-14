@@ -49,7 +49,7 @@ const Register = () => {
         createUser(data.email, data.password)
             .then(userCredential => {
                 const loggedUser = userCredential.user;
-                console.log(loggedUser);
+                // console.log(loggedUser);
                 updateUserProfile(data.name, data.photoURL)
                     .then(() => {
                         // console.log("User Profile Info. is updated successfully.")

@@ -11,7 +11,7 @@ const useSelectClass = () => {
         enabled: !loading,
         queryFn: async () => {
             const res = await axiosSecure(`/selectClass?email=${user?.email}`)
-            console.log('res from axios', res)
+            // console.log('res from axios', res)
             return res.data;
         },
     });

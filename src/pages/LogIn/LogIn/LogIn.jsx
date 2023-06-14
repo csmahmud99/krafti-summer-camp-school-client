@@ -38,11 +38,11 @@ const LogIn = () => {
 
     // Handle submit 
     const onSubmit = data => {
-        console.log(data);
+        // console.log(data);
         signIn(data.email, data.password)
             .then(userCredential => {
                 const loggedUser = userCredential.user;
-                console.log(loggedUser);
+                // console.log(loggedUser);
                 reset();
                 Swal.fire({
                     position: 'top-end',

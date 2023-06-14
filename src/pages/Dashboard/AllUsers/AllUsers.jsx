@@ -9,7 +9,7 @@ const AllUsers = () => {
     // Using of TanStack Query/React Query (short-form, not the object-form) for fetching users data from MongoDB to Client-side || Using 'axiosSecure' for calling the API
     const { data: users = [], refetch } = useQuery(["users"], async () => {
         const res = await axiosSecure.get("/users");
-        console.log("Response from axios:", res);
+        // console.log("Response from axios:", res);
         return res.data;
     });
 
@@ -20,7 +20,7 @@ const AllUsers = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 if (data.modifiedCount) {
                     refetch();
                     Swal.fire({
@@ -42,7 +42,7 @@ const AllUsers = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 if (data.modifiedCount) {
                     refetch();
                     Swal.fire({
