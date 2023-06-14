@@ -112,7 +112,7 @@ const Register = () => {
                         <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
                     </div>
 
-                    <div className="card flex-shrink-0 w-1/2 shadow-2xl bg-base-100">
+                    <div className="flex-shrink-0 w-1/2 shadow-2xl bg-base-100">
                         <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                             {/* Registration :: Name Field */}
                             <div className="form-control">

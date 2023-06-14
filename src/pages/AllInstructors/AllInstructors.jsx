@@ -29,17 +29,29 @@ const AllInstructors = () => {
 
                     <div className="grid md:grid-cols-3 gap-5 ml-10 mr-10 bg-slate-200 py-16 mt-12 px-8">
                         {
-                            showInstructors.map(instructor => <div key={instructor._id} className="card w-96 bg-base-100 shadow-xl">
-                                <figure className="px-10 pt-10">
-                                    <img src={instructor?.photo} alt="instructor-image" className="rounded-xl" />
-                                </figure>
-                                <div className="card-body items-center text-center">
-                                    
-                                    <h2 className="card-title text-primary font-bold">{instructor?.name}</h2>
 
-                                    <p><strong>Instructor's Email:</strong> <br /> {instructor?.email}</p>
+                            showInstructors?.map(instructor => <div
+                                key={instructor?._id}
+                                className="card card-compact w-full bg-base-100 border border-purple-600 shadow drop-shadow-lg p-2">
+                                <img className='w-full h-96 rounded-lg' src={instructor?.photo} alt="instructor-image" />
+                                <div className="card-body text-center">
+                                    <h2 className="text-primary font-bold text-xl md:text-3xl text-semibold font-sans">{instructor?.name}</h2>
+                                    <p className="text-lg text-semibold font-sans"><strong>Instructor's Email:</strong> <br /> {instructor?.email}</p>
                                 </div>
                             </div>)
+
+
+                            // showInstructors.map(instructor => <div key={instructor._id} className="card w-96 bg-base-100 shadow-xl">
+                            //     <figure className="px-10 pt-10">
+                            //         <img src={instructor?.photo} alt="instructor-image" className="rounded-xl" />
+                            //     </figure>
+                            //     <div className="card-body items-center text-center">
+
+                            //         <h2 className="card-title text-primary font-bold">{instructor?.name}</h2>
+
+                            //         <p><strong>Instructor's Email:</strong> <br /> {instructor?.email}</p>
+                            //     </div>
+                            // </div>)
                         }
                     </div>
                 </section>

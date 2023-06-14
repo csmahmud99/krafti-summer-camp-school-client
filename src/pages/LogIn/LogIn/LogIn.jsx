@@ -71,14 +71,14 @@ const LogIn = () => {
                         <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
                     </div>
 
-                    <div className="card flex-shrink-0 w-1/2 shadow-2xl bg-base-100">
+                    <div className="flex-shrink-0 w-1/2 shadow-2xl bg-base-100">
                         <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                             {/* Log In :: Email Field */}
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
-                                <input type="email" {...register("email", { required: true })} placeholder="Enter Your Email" className="input input-bordered" />
+                                <input type="email" {...register("email", { required: true })} placeholder="Enter Your Email" className="input input-bordered w-full" />
                                 {errors.email && <span className="text-red-600">Email is required.</span>}
                             </div>
 
