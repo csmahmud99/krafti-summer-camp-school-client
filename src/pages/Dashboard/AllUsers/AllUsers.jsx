@@ -15,7 +15,7 @@ const AllUsers = () => {
 
     // Make Admin Function for the "Make Admin" button
     const handleMakeAdmin = user => {
-        fetch(`http://localhost:5000/users/admin/${user._id}`, {
+        fetch(`https://krafti-summer-camp-school-server.vercel.app/users/admin/${user._id}`, {
             method: "PATCH"
         })
             .then(res => res.json())
@@ -37,7 +37,7 @@ const AllUsers = () => {
 
     // Make Instructor Function for the "Make Instructor" button
     const handleMakeInstructor = user => {
-        fetch(`http://localhost:5000/users/instructor/${user._id}`, {
+        fetch(`https://krafti-summer-camp-school-server.vercel.app/users/instructor/${user._id}`, {
             method: "PATCH"
         })
             .then(res => res.json())

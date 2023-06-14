@@ -17,7 +17,7 @@ const ManageClasses = () => {
 
     // 'Approve' Button for Class Approval State Change
     const handleApproveClass = id => {
-        fetch(`http://localhost:5000/classes/approved/${id}`, {
+        fetch(`https://krafti-summer-camp-school-server.vercel.app/classes/approved/${id}`, {
             method: "PATCH"
         })
             .then(res => res.json())
@@ -38,7 +38,7 @@ const ManageClasses = () => {
 
     // 'Deny' Button for Class Approval State Change
     const handleDeniedClass = id => {
-        fetch(`http://localhost:5000/classes/denied/${id}`, {
+        fetch(`https://krafti-summer-camp-school-server.vercel.app/classes/denied/${id}`, {
             method: "PATCH"
         })
             .then(res => res.json())

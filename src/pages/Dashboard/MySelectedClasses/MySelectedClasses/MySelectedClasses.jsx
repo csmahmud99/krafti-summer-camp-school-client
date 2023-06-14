@@ -2,10 +2,42 @@ import { Helmet } from "react-helmet-async";
 import SectionTitle from "../../../../components/sectionTitle/sectionTitle";
 import useSelectClass from "../../../../hooks/useSelectClass";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const MySelectedClasses = () => {
     const [selectClass, refetch] = useSelectClass();
     const navigate = useNavigate();
+
+    // 'Delete' button function to delete a selected class
+    const handleDeleteSelectedClass = id => {
+        // console.log(id);
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to DELETE this selected class!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Delete It!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`https://krafti-summer-camp-school.web.app/selectClass/${id}`, {
+                    method: "DELETE"
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount > 0) {
+                            refetch();
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            );
+                        }
+                    });
+            }
+        });
+    };
 
     return (
         <>
@@ -35,7 +67,8 @@ const MySelectedClasses = () => {
 
                                     <div className="flex items-center justify-between gap-10 card-actions">
                                         <button onClick={() => navigate(`/dashboard/payment/${mySelectedClass._id}`)} className="btn btn-primary">Pay</button>
-                                        <button className="btn btn-outline bg-red-600 text-white">Delete</button>
+
+                                        <button onClick={() => handleDeleteSelectedClass(mySelectedClass?.classId)} className="btn btn-outline bg-red-600 text-white">Delete</button>
                                     </div>
                                 </div>
                             </div>)

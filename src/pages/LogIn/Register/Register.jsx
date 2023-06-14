@@ -59,7 +59,7 @@ const Register = () => {
                             email: data.email
                         };
                         // Sending data to the backend to save registered user info into the database of MongoDB
-                        fetch("http://localhost:5000/users", {
+                        fetch("https://krafti-summer-camp-school-server.vercel.app/users", {
                             method: "POST",
                             headers: {
                                 "content-type": "application/json"
