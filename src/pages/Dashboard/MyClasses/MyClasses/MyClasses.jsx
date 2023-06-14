@@ -37,7 +37,7 @@ const MyClasses = () => {
                         {
                             myClasses?.map(myClass => <div key={myClass._id} className="card w-96 bg-base-100 shadow-xl">
                                 <figure className="px-10 pt-10">
-                                    <img src={myClass?.image} alt="Shoes" className="rounded-xl" />
+                                    <img src={myClass?.image} alt="class-banner" className="rounded-xl" />
                                 </figure>
                                 <div className="card-body items-center text-center">
                                     <p><strong>Price:</strong> ${myClass?.price}</p>
@@ -59,7 +59,6 @@ const MyClasses = () => {
                                 </div>
                             </div>)
                         }
-
                     </div>
                 </section>
             </div>
