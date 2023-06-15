@@ -18,6 +18,7 @@ import AddClass from "../../pages/Dashboard/AddClass/AddClass/AddClass";
 import InstructorRoute from "../InstructorRoute/InstructorRoute";
 import UpdateClass from "../../pages/Dashboard/MyClasses/MyClasses/UpdateClass/UpdateClass";
 import Payment from "../../pages/Dashboard/PaymentService/Payment/Payment";
+import PaymentHistory from "../../pages/Dashboard/PaymentHistory/PaymentHistory";
 
 const router = createBrowserRouter([
     // Main/Basic Page Layout Routes
@@ -84,9 +85,13 @@ const router = createBrowserRouter([
                 element: <MyEnrolledClasses />
             },
             {
+                path: "my-payment-history",
+                element: <PaymentHistory />
+            },
+            {
                 path: "payment/:id",
                 element: <Payment />
-            },
+            }
         ]
     }
 ]);
